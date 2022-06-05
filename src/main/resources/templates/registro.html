@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Matrícula UPC</title>
+	<link rel="shortcut icon" href="/matricula/upc.ico" />
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+
+    <!--headerIncludes-->
+
+	<!-- css files -->
+	<link rel="stylesheet" href="./bundles/css/style.css"> <!-- Style-CSS --> 
+	<link href="./bundles/css/font-awesome.min.css" rel="stylesheet">
+	<!-- //css files -->
+	
+	<!-- google fonts -->
+	<link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+	<!-- //google fonts -->
+	
+</head>
+
+<body>
+
+    <div id="page" class="page">
+
+    <div class="signupform">
+	<div class="container">
+		<!-- main content -->
+		<div class="agile_info">
+			<div class="w3l_form editContent">
+				<h1 class="editContent">Registrate</h1>
+				<p class="editContent" style=""><br></p><p class="editContent" style=""><br></p><p class="editContent" style=""><br></p><p class="editContent" style=""><br></p><p class="editContent" style=""><br></p>
+				<img src="https://www.laureate.net/wp-content/uploads/2019/03/10-UPC-Universidad-Peruana-de-Ciencias-Aplicadas.png" alt="" style="border-radius: 0px; border-color: rgb(0, 0, 0); border-style: none; border-width: 1px;">
+			</div>
+			<div class="w3_info editContent" style="outline: none; cursor: inherit;">
+				<h2 class="editContent">Registro</h2><p class="editContent" style=""><br></p>
+				
+				
+				
+				<form th:action="@{/registry/save}" th:object="${account}" method="post">
+					<div class="editContent">
+						<label class="editContent">Nombre</label>
+						<div class="input-group editContent medium-editor-placeholder" style="outline: none; outline-offset: -2px; cursor: inherit;">
+							<span class="fa fa-user" aria-hidden="true" style="outline: none; cursor: inherit; outline-offset: -2px; color: rgb(255, 0, 0); font-size: 16px;" id="ui-id-2"></span>
+							<input type="text" th:field="*{nameAccount}"  name="nameAccount" id="nameAccount"  placeholder="Ingresa tu Nombre" 
+									th:errorclass="'form-control alert-danger'" required pattern="[A-Za-z]{1,45}" /> 
+							<small  class="form-text text-danger"
+									th:if="${#fields.hasErrors('nameAccount')}"
+									th:errors="*{nameAccount}"></small>
+						</div>
+					</div>
+					<div class="editContent">
+						<label class="editContent">Apellido</label>
+						<div class="input-group editContent medium-editor-placeholder" style="outline: none; outline-offset: -2px; cursor: inherit;">
+							<span class="fa fa-user" aria-hidden="true" style="outline: none; cursor: inherit; outline-offset: -2px; color: rgb(255, 0, 0); font-size: 16px;" id="ui-id-2"></span>
+							<input type="text" th:field="*{lastNameAccount}" name="lastNameAccount" id="lastNameAccount"  placeholder="Ingresa tu Apellido" 
+							th:errorclass="'form-control alert-danger'" required pattern="[A-Za-z]{1,45}" /> 
+							<small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('lastNameAccount')}"
+								th:errors="*{lastNameAccount}"></small>
+						</div>
+					</div>
+					<div class="editContent">
+						<label class="editContent">Usuario</label>
+						<div class="input-group editContent medium-editor-placeholder" style="outline: none; outline-offset: -2px; cursor: inherit;">
+							<span class="fa fa-user" aria-hidden="true" style="outline: none; cursor: inherit; outline-offset: -2px; color: rgb(255, 0, 0); font-size: 16px;" id="ui-id-2"></span>
+							<input type="text"  name="userAccount" id="userAccount"  placeholder="Ingresa tu Usuario" 
+							th:field="*{userAccount}" required th:errorclass="'form-control alert-danger'" />
+							<small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('userAccount')}"
+									th:errors="*{userAccount}"></small>
+						</div>
+					</div>
+					<div class="editContent" style="outline: none; outline-offset: -2px; cursor: inherit;">
+						<label class="editContent">Contraseña</label>
+						<div class="input-group editContent">
+							<span class="fa fa-lock" aria-hidden="true" style="outline: none; cursor: inherit; outline-offset: -2px; color: rgb(255, 0, 0); font-size: 16px;"></span>
+							<input type="Password"  th:field="*{passwordAccount}" name="passwordAccount" id="passwordAccount" placeholder="Ingresa tu Contraseña" 
+							required pattern="{1,20}" th:errorclass="'form-control alert-danger'" />
+							 <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('passwordAccount')}"
+									th:errors="*{passwordAccount}"></small>
+						</div> 
+					</div> 						
+						<button class="btn btn-danger btn-block" type="submit" style="outline: none; cursor: inherit;">Registrar</button>
+						
+						
+				</form>
+				<br></br>
+				<div align="center" class="col-8 mb-2" >
+			 			 <div class="alert alert-success" th:if="${success != null}"
+							th:text="${mensaje}"></div>
+			 	     	  <div class="alert alert-danger" th:if="${error != null}"
+								Style ="color:red"th:text="${error}"></div>
+			 		     
+		       </div>
+				
+				<p class="account1 editContent" style="outline: none; cursor: inherit;">Ya tienes Cuenta? <a href="@{/login}">Ingresa Aquí</a></p>
+			</div>
+		</div>
+		<!-- //main content -->
+	</div>
+	<!-- copyright -->
+	<div class="copyright">
+		<p></p>
+	</div>
+	<!-- copyright -->
+</div></div>
+</body></html>
