@@ -77,9 +77,9 @@ public class StudentController {
 
 				long edadEnDias = (student.getDateOfAdmissionStudent().getTime()
 						- student.getDateOfBirthStudent().getTime()) / 1000 / 60 / 60 / 24;
-				int años = Double.valueOf(edadEnDias / 365.25d).intValue();
+				int anios = Double.valueOf(edadEnDias / 365.25d).intValue();
 
-				if (años >= 16 && años <= 85) {
+				if (anios >= 16 && anios <= 85) {
 					sS.insert(student);
 					model.addAttribute("listTeachers", sS.list());
 					
@@ -207,7 +207,7 @@ public class StudentController {
 
 				long edadEnDias = (student.getDateOfAdmissionStudent().getTime()
 						- student.getDateOfBirthStudent().getTime()) / 1000 / 60 / 60 / 24;
-				int años = Double.valueOf(edadEnDias / 365.25d).intValue();
+				int anios = Double.valueOf(edadEnDias / 365.25d).intValue();
 				
 				Account aux = new Account();
 				String password = new BCryptPasswordEncoder().encode(student.getPasswordAccount());	
@@ -223,7 +223,7 @@ public class StudentController {
 				
 				cS.insert(aux);
 
-				if (años >= 16 && años <= 85) {
+				if (anios >= 16 && anios <= 85) {
 					sS.insert(student);
 					model.addAttribute("listTeachers", sS.list());
 					return "redirect:/students/list";
