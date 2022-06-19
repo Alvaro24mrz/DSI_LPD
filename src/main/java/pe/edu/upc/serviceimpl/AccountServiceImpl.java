@@ -5,12 +5,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import pe.edu.upc.entity.Account;
 import pe.edu.upc.repository.IAccountRepository;
 import pe.edu.upc.serviceinterface.IAccountService;
 
 @Service
+@Transactional
 public class AccountServiceImpl implements Serializable, IAccountService {
 
 	private static final long serialVersionUID=1L;
@@ -33,6 +35,16 @@ public class AccountServiceImpl implements Serializable, IAccountService {
 			cR.save(account);
 		}
 		return rpta;
+	}
+	
+	@Override
+	public void delete(int id) {
+		cR.deleteById(id);
+	}
+	
+	@Override
+	public void modificar(Account account) {
+		cR.modificar(account.getIdAccount(), account.getDif(), account.getLastNameAccount(), account.getNameAccount(), account.getPasswordAccount(), account.getUserAccount(), account.getRoleAccount().getIdRole(), account.getStudent().getIdStudent());	
 	}
 
 	@Override

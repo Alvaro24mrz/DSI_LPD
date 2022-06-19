@@ -134,10 +134,18 @@ public class StudentController {
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
 		cuenta = this.usuarioService.getAccount(userDetail.getUsername());
 		model.addAttribute("cuenta", cuenta);
+		
+		int aux = 0;
+		
+		for(int i = 1; i < cS.list().size(); i++) {
+			if(id == cS.list().get(i).getStudent().getIdStudent())
+					aux = cS.list().get(i).getIdAccount();
+		}
 
 		try {
 			model.addAttribute("student", new Student());
 			if (id > 0) {
+				cS.delete(aux);
 				sS.delete(id);
 			}
 			model.addAttribute("mensaje", "Se eliminó correctamente");
@@ -209,8 +217,22 @@ public class StudentController {
 						- student.getDateOfBirthStudent().getTime()) / 1000 / 60 / 60 / 24;
 				int anios = Double.valueOf(edadEnDias / 365.25d).intValue();
 				
+				String password = new String();
+				
+				for(int i = 0; i < sS.list().size(); i++) {
+					if(student.getIdStudent() == sS.list().get(i).getIdStudent())
+							student.setPasswordAccount( sS.list().get(i).getPasswordAccount());
+							password = sS.list().get(i).getPasswordAccount();
+				}
+				
+				for(int i = 1; i < cS.list().size(); i++) {
+					if(student.getIdStudent() == cS.list().get(i).getStudent().getIdStudent())
+							password = cS.list().get(i).getPasswordAccount();
+				}
+				
 				Account aux = new Account();
-				String password = new BCryptPasswordEncoder().encode(student.getPasswordAccount());	
+				
+				//String password = new BCryptPasswordEncoder().encode(student.getPasswordAccount());	
 				Role aux2 = rS.list().get(0);
 				aux.setIdAccount(cS.list().size() + 20);
 				aux.setNameAccount(student.getNameStudent());
@@ -221,9 +243,9 @@ public class StudentController {
 				aux.setStudent(student);
 				aux.setDif(student.getRol());
 				
-				cS.insert(aux);
 
 				if (anios >= 16 && anios <= 85) {
+					cS.modificar(aux);
 					sS.insert(student);
 					model.addAttribute("listTeachers", sS.list());
 					return "redirect:/students/list";
