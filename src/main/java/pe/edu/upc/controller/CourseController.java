@@ -132,9 +132,9 @@ public class CourseController {
 			if (id > 0) {
 				cS.delete(id);
 			}
-			model.addAttribute("mensaje", "Se eliminÃ³ correctamente");
+			model.addAttribute("mensaje", "Se eliminó correctamente");
 		} catch (Exception e) {
-			model.addAttribute("mensaje", "OcurriÃ³ un error, no es posible eliminar al curso, ya que esta designado a un docente");
+			model.addAttribute("mensaje", "Ocurrió un error, no es posible eliminar al curso, ya que esta designado a un docente");
 		}
 		model.addAttribute("listCourses", cS.list());
 		return "course/listCourses";
@@ -150,7 +150,7 @@ public class CourseController {
 		
 		Optional<Course> objPro = cS.searchId(id);
 		if (objPro == null) {
-			objRedir.addFlashAttribute("mensaje", "OcurriÃ³ un error");
+			objRedir.addFlashAttribute("mensaje", "Ocurrió un error");
 			return "redirect:/course/list";
 		} else {
 			model.addAttribute("listCourses", cS.list());
@@ -170,7 +170,7 @@ public class CourseController {
 		List<Course> listCourses;
 		listCourses = cS.findNameCourseFull(course.getNameCourse());
 		if (listCourses.isEmpty()) {
-			model.addAttribute("mensaje", "No hay registros que coincidan con la bÃºsqueda");
+			model.addAttribute("mensaje", "No hay registros que coincidan con la búsqueda");
 		}
 		model.addAttribute("listCourses", listCourses);
 		return "course/listCourses";

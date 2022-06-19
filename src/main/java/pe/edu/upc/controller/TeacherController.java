@@ -61,7 +61,7 @@ public class TeacherController {
 		for (Teacher teacher2 : list) {
 		if (teacher.getIdTeacher() == teacher2.getIdTeacher()) 
 		{
-			model.addAttribute("mensaje", "Ya existe un docente con ese cÃ³digo");
+			model.addAttribute("mensaje", "Ya existe un docente con ese código");
 			return "teacher/teacher";
 		} 
 		}			
@@ -75,12 +75,12 @@ public class TeacherController {
 					return "redirect:/teachers/list";
 				}
 				else {
-					model.addAttribute("mensaje", "La edad mÃ­nima es de 23 aÃ±os");
+					model.addAttribute("mensaje", "La edad mínima es de 23 años");
 					return "teacher/teacher";
 				}
 		}
 		else {
-				model.addAttribute("mensaje", "La fecha de nacimiento debe ser antes de la fecha de admisiÃ³n");
+				model.addAttribute("mensaje", "La fecha de nacimiento debe ser antes de la fecha de admisión");
 				return "teacher/teacher";
 		}
 		}
@@ -114,9 +114,9 @@ public class TeacherController {
 			if (id > 0) {
 				tS.delete(id);
 			}
-			model.addAttribute("mensaje", "Se eliminÃ³ correctamente");
+			model.addAttribute("mensaje", "Se eliminó correctamente");
 		} catch (Exception e) {
-			model.addAttribute("mensaje", "OcurriÃ³ un error, no es posible eliminar al docente, ya que tiene un curso asignado");
+			model.addAttribute("mensaje", "Ocurrió un error, no es posible eliminar al docente, ya que tiene un curso asignado");
 		}
 		model.addAttribute("listTeachers", tS.list());
 		return "teacher/listTeachers";
@@ -131,7 +131,7 @@ public class TeacherController {
 		
 		Optional<Teacher> objPro = tS.searchId(id);
 		if (objPro == null) {
-			objRedir.addFlashAttribute("mensaje", "OcurriÃ³ un error");
+			objRedir.addFlashAttribute("mensaje", "Ocurrió un error");
 			return "redirect:/teachers/list";
 		} else {
 			model.addAttribute("listTeachers", tS.list());
@@ -150,7 +150,7 @@ public class TeacherController {
 		List<Teacher> listTeachers;
 		listTeachers = tS.findNameTeacherFull(teacher.getNameTeacher());
 		if (listTeachers.isEmpty()) {
-			model.addAttribute("mensaje", "No hay registros que coincidan con la bÃºsqueda");
+			model.addAttribute("mensaje", "No hay registros que coincidan con la búsqueda");
 		}
 		model.addAttribute("listTeachers", listTeachers);
 		return "teacher/listTeachers";
@@ -176,12 +176,12 @@ public class TeacherController {
 						return "redirect:/teachers/list";
 					}
 					else {
-						model.addAttribute("mensaje", "La edad mÃ­nima es de 23 aÃ±os");
+						model.addAttribute("mensaje", "La edad mínima es de 23 años");
 						return "teacher/modTeacher";
 					}
 			}
 			else {
-					model.addAttribute("mensaje", "La fecha de nacimiento debe ser antes de la fecha de admisiÃ³n");
+					model.addAttribute("mensaje", "La fecha de nacimiento debe ser antes de la fecha de admisión");
 					return "teacher/modTeacher";
 			}
 		}

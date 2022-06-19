@@ -74,14 +74,14 @@ public class IndexController {
 			account.setRoleAccount(rol);
 			int rpta = cS.insert(account);
 			if (rpta > 0) {
-					model.addAttribute("error", "El UserName ya est√° en uso");
+					model.addAttribute("error", "El UserName ya est· en uso");
 					return"redirect:/registro";
 				
 			} else {
 				
 				cS.insert(account);
 				model.addAttribute("listAccounts", cS.list());
-				model.addAttribute("mensaje", "El usuario se registr√≥ correctamente");
+				model.addAttribute("mensaje", "El usuario se registrÛ correctamente");
 				return "redirect:/login";
 			}
 		}

@@ -156,10 +156,10 @@ public class CoursesxTeacherController {
 			if (id > 0) {
 				cxtS.delete(id);
 			}
-			model.addAttribute("mensaje", "Se eliminÃ³ correctamente");
+			model.addAttribute("mensaje", "Se eliminó correctamente");
 		} catch (Exception e) {
 			model.addAttribute("mensaje",
-					"OcurriÃ³ un error,  no es posible eliminar al Curso con docecnte asignado, ya que existen alumnos matriculados");
+					"Ocurrió un error,  no es posible eliminar al Curso con docecnte asignado, ya que existen alumnos matriculados");
 		}
 		model.addAttribute("listCoursesxTeachers", cxtS.list());
 		return "coursesxteacher/listCoursesxTeachers";
@@ -314,7 +314,7 @@ public class CoursesxTeacherController {
 		List<String[]> listEnrollments;
 		listEnrollments = cxtS.report2(enrollment.getCoursesxteacher().getSemesterCoursesxTeacher());
 		if (listEnrollments.isEmpty()) {
-			model.addAttribute("mensaje", "No hay registros que coincidan con la bÃºsqueda");
+			model.addAttribute("mensaje", "No hay registros que coincidan con la búsqueda");
 		}
 		model.addAttribute("listEnrollments", listEnrollments);
 		return "enrollment/reportEnrollments";
@@ -330,7 +330,7 @@ public class CoursesxTeacherController {
 		List<CoursesxTeacher> listCoursesxTeachers;
 		listCoursesxTeachers = cxtS.findNameCoursesxTeacherFull(coursesxteachers.getTeacher().getNameTeacher());
 		if (listCoursesxTeachers.isEmpty()) {
-			model.addAttribute("mensaje", "No hay registros que coincidan con la bÃºsqueda");
+			model.addAttribute("mensaje", "No hay registros que coincidan con la búsqueda");
 		}
 		model.addAttribute("listCoursesxTeachers", listCoursesxTeachers);
 		return "coursesxteacher/listCoursesxTeachers";

@@ -46,11 +46,11 @@ public class LoginController {
 		}
 
 		if (error != null) {
-			model.addAttribute("error","Error en el login: Nombre de usuario o contraseÃ±a incorrecta, por favor vuelva a intentarlo!");
+			model.addAttribute("error","Error en el login: Nombre de usuario o contraseña incorrecta, por favor vuelva a intentarlo!");
 		}
 
 		if (logout != null) {
-			model.addAttribute("success", "Ha cerrado sesiÃ³n con Ã©xito!");
+			model.addAttribute("success", "Ha cerrado sesión con Éxito!");
 			return "login";
 		}
 		return "login";

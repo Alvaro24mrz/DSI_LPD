@@ -67,7 +67,7 @@ public class StudentController {
 			list = sS.list();
 			for (Student student2 : list) {
 				if (student.getIdStudent() == student2.getIdStudent()) {
-					model.addAttribute("mensaje", "Ya existe un alumno con ese cÃ³digo");
+					model.addAttribute("mensaje", "Ya existe un alumno con ese código");
 
 					return "student/student";
 				}
@@ -99,11 +99,11 @@ public class StudentController {
 					
 					return "redirect:/students/list";
 				} else {
-					model.addAttribute("mensaje", "La edad mÃ­nima es de 16 aÃ±os y maxima de 85 aÃ±os");
+					model.addAttribute("mensaje", "La edad mínima es de 16 años y maxima de 85 años");
 					return "student/student";
 				}
 			} else {
-				model.addAttribute("mensaje", "La fecha de nacimiento debe ser antes de la fecha de admisiÃ³n");
+				model.addAttribute("mensaje", "La fecha de nacimiento debe ser antes de la fecha de admisión");
 				return "student/student";
 			}
 
@@ -148,10 +148,10 @@ public class StudentController {
 				cS.delete(aux);
 				sS.delete(id);
 			}
-			model.addAttribute("mensaje", "Se eliminÃ³ correctamente");
+			model.addAttribute("mensaje", "Se eliminó correctamente");
 		} catch (Exception e) {
 			model.addAttribute("mensaje",
-					"OcurriÃ³ un error, no es posible eliminar al alumno, ya que estÃ¡ matriculado");
+					"Ocurrió un error, no es posible eliminar al alumno, ya que está matriculado");
 		}
 		model.addAttribute("listStudents", sS.list());
 		return "student/listStudents";
@@ -167,7 +167,7 @@ public class StudentController {
 
 		Optional<Student> objPro = sS.searchId(id);
 		if (objPro == null) {
-			objRedir.addFlashAttribute("mensaje", "OcurriÃ³ un error");
+			objRedir.addFlashAttribute("mensaje", "Ocurrió un error");
 			return "redirect:/student/list";
 		} else {
 			model.addAttribute("listStudents", sS.list());
@@ -193,7 +193,7 @@ public class StudentController {
 			List<Student> listStudents;
 			listStudents = sS.findNameStudentFull(student.getNameStudent());
 			if (listStudents.isEmpty()) {
-				model.addAttribute("mensaje", "No hay registros que coincidan con la bÃºsqueda");
+				model.addAttribute("mensaje", "No hay registros que coincidan con la búsqueda");
 			}
 			model.addAttribute("listStudents", listStudents);
 			return "student/listStudents";
@@ -250,11 +250,11 @@ public class StudentController {
 					model.addAttribute("listTeachers", sS.list());
 					return "redirect:/students/list";
 				} else {
-					model.addAttribute("mensaje", "La edad mÃ­nima es de 16 aÃ±os");
+					model.addAttribute("mensaje", "La edad mínima es de 16 años");
 					return "student/student";
 				}
 			} else {
-				model.addAttribute("mensaje", "La fecha de nacimiento debe ser antes de la fecha de admisiÃ³n");
+				model.addAttribute("mensaje", "La fecha de nacimiento debe ser antes de la fecha de admisión");
 				return "student/student";
 			}
 

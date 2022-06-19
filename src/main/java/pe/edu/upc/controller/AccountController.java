@@ -81,14 +81,14 @@ public class AccountController {
 			int rpta = cS.insert(account);
 			if (rpta > 0) {
 				model.addAttribute("roles", rS.list());
-				model.addAttribute("mensaje2", "El el correo ya est√°(n) en uso");
+				model.addAttribute("mensaje2", "El el correo ya est· en uso");
 				return "user/user";
 			} else {
 
 				cS.insert(account);
 				model.addAttribute("roles", rS.list());
 				model.addAttribute("listAccounts", cS.list());
-				model.addAttribute("mensaje", "El usuario se registr√≥ correctamente");
+				model.addAttribute("mensaje", "El usuario se registrÛ correctamente");
 				return "user/listUsers";
 			}
 		}

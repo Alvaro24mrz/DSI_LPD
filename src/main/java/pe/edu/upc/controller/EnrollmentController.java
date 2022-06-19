@@ -72,7 +72,7 @@ public class EnrollmentController {
 			rpta2 = eS.searchEnroll(enroll);
 			rpta = eS.insert(enroll);
 			if (rpta2>=1) {
-				model.addAttribute("mensaje", "El alumno ya est√° matriculado");
+				model.addAttribute("mensaje", "El alumno ya est· matriculado");
 				model.addAttribute("listStudents", sS.list());
 				model.addAttribute("listCoursesxTeacher", cxtS.list());
 				return "enrollment/enrollment";
@@ -123,9 +123,9 @@ public class EnrollmentController {
 			if (id > 0) {
 				eS.delete(id);
 			}
-			model.addAttribute("mensaje", "Se elimin√≥ correctamente");
+			model.addAttribute("mensaje", "Se eliminÛ correctamente");
 		} catch (Exception e) {
-			model.addAttribute("mensaje", "Ocurri√≥ un error, no se pudo eliminar");
+			model.addAttribute("mensaje", "OcurriÛ un error, no se pudo eliminar");
 		}
 		model.addAttribute("listEnrollments", eS.list());
 		return "enrollment/listEnrollments";
@@ -140,7 +140,7 @@ public class EnrollmentController {
 		
 		Optional<Enrollment> objPro = eS.searchId(id);
 		if (objPro == null) {
-			objRedir.addFlashAttribute("mensaje", "Ocurri√≥ un error");
+			objRedir.addFlashAttribute("mensaje", "OcurriÛ un error");
 			return "redirect:/enrollment/list";
 		} else {
 			model.addAttribute("listStudents", sS.list());
@@ -162,7 +162,7 @@ public class EnrollmentController {
 		listEnrollments = eS
 				.findSemesterCoursesxTeacherFull(enrollment.getCoursesxteacher().getSemesterCoursesxTeacher());
 		if (listEnrollments.isEmpty()) {
-			model.addAttribute("mensaje", "No hay registros que coincidan con la b√∫squeda");
+			model.addAttribute("mensaje", "No hay registros que coincidan con la b˙squeda");
 		}
 		model.addAttribute("listEnrollments", listEnrollments);
 		return "enrollment/listEnrollments";
@@ -205,7 +205,7 @@ public class EnrollmentController {
 			rpta2 = eS.searchEnroll(enroll);
 			rpta = eS.insert(enroll);
 			if (rpta2>=1) {
-				model.addAttribute("mensaje", "El alumno ya est√° matriculado");
+				model.addAttribute("mensaje", "El alumno ya est· matriculado");
 				model.addAttribute("listStudents", sS.list());
 				model.addAttribute("listCoursesxTeacher", cxtS.list());
 				return "enrollment/enrollment";

@@ -59,7 +59,7 @@ public class RoleController {
 				return "user/role";
 			} else {
 				model.addAttribute("listRoles", cS.list());
-				model.addAttribute("mensaje", "El rol se registrÃ³ correctamente");
+				model.addAttribute("mensaje", "El rol se registró correctamente");
 				return "user/listRoles";
 			}
 		}
