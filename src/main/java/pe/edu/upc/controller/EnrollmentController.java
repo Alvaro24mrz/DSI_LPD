@@ -200,11 +200,29 @@ public class EnrollmentController {
 			model.addAttribute("listCoursesxTeacher", cxtS.list());
 			return "enrollment/enrollment";
 		} else {
-					eS.insert1(enroll);
+			int rpta = 0;
+			int rpta2 = 0;
+			rpta2 = eS.searchEnroll(enroll);
+			rpta = eS.insert(enroll);
+			if (rpta2>=1) {
+				model.addAttribute("mensaje", "El alumno ya está matriculado");
+				model.addAttribute("listStudents", sS.list());
+				model.addAttribute("listCoursesxTeacher", cxtS.list());
+				return "enrollment/enrollment";
+			} else {
+				if (rpta >=10) {
+					model.addAttribute("mensaje", "Ya hay 10 alummnos matriculados en el curso con el docente seleccionado");
+					model.addAttribute("listStudents", sS.list());
+					model.addAttribute("listCoursesxTeacher", cxtS.list());
+					return "enrollment/enrollment";
+				} else {
+					eS.insert(enroll);
 					model.addAttribute("listStudents", sS.list());
 					model.addAttribute("listCoursesxTeacher", cxtS.list());
 					model.addAttribute("listEnrollments", eS.list());
 					return "redirect:/enrollments/list";
-		}
+				}
+			}
 	}
+}
 }

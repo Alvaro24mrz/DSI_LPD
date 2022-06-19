@@ -91,11 +91,20 @@ public class CoursesxTeacherController {
 			DateFormat dateFormat2 = new SimpleDateFormat("HH:mm a", Locale.ENGLISH);
 			Date d1 = dateFormat1.parse(coursesxteacher.getInitalHourCoursesxTeacher());
 			Date d2 = dateFormat2.parse(coursesxteacher.getFinalHourCoursesxTeacher());
+			
+			String aux = "12:00 PM";
+			DateFormat dateFormat3 = new SimpleDateFormat("HH:mm a", Locale.ENGLISH);
+			Date d3 = dateFormat3.parse(aux);
+			
 			System.out.println(d1);
 			System.out.println(d2);
 			if (d1.before(d2)) {
 				int hor = cxtS.validarHoras(d1, d2);
 				if (hor == 1) {
+					if(d1.compareTo(d3) == 0)
+					coursesxteacher.setInitalHourCoursesxTeacher("12:00 PM");
+					if(d2.compareTo(d3) == 0)
+					coursesxteacher.setFinalHourCoursesxTeacher("12:00 PM");
 					cxtS.insert(coursesxteacher);
 					model.addAttribute("listCourses", cS.list());
 					model.addAttribute("listTeachers", tS.list());

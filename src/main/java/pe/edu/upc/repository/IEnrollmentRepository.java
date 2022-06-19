@@ -3,9 +3,11 @@ package pe.edu.upc.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import pe.edu.upc.entity.Enrollment;
 
@@ -20,5 +22,6 @@ public interface IEnrollmentRepository extends JpaRepository<Enrollment, Integer
 	
 	@Query(value="select count(e.id_student) from enrollments e where e.id_coursesx_teacher = :numberCxt and e.id_student =:numberStudent", nativeQuery= true)
 	public int nuEnrollments1(@Param("numberCxt") int idn,@Param("numberStudent") int ids);
+	
 	
 }
