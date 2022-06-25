@@ -86,7 +86,7 @@ public class StudentController {
 					Account aux = new Account();
 					String password = new BCryptPasswordEncoder().encode(student.getPasswordAccount());	
 					Role aux2 = rS.list().get(0);
-					aux.setIdAccount(cS.list().size() + 20);
+					aux.setIdAccount(cS.list().get(cS.list().size()-1).getIdAccount()+1);
 					aux.setNameAccount(student.getNameStudent());
 					aux.setLastNameAccount(student.getLastnameStudent());
 					aux.setUserAccount(Integer.toString(student.getIdStudent()));
@@ -218,23 +218,28 @@ public class StudentController {
 				int anios = Double.valueOf(edadEnDias / 365.25d).intValue();
 				
 				String password = new String();
+				int aux3 = 0;
 				
 				for(int i = 0; i < sS.list().size(); i++) {
-					if(student.getIdStudent() == sS.list().get(i).getIdStudent())
+					if(student.getIdStudent() == sS.list().get(i).getIdStudent()) {
 							student.setPasswordAccount( sS.list().get(i).getPasswordAccount());
 							password = sS.list().get(i).getPasswordAccount();
 				}
+				}
 				
-				for(int i = 1; i < cS.list().size(); i++) {
-					if(student.getIdStudent() == cS.list().get(i).getStudent().getIdStudent())
-							password = cS.list().get(i).getPasswordAccount();
+				for(int j = 1; j < cS.list().size(); j++) {
+					if(student.getIdStudent() == cS.list().get(j).getStudent().getIdStudent())
+					{
+						password = cS.list().get(j).getPasswordAccount();
+						aux3 = cS.list().get(j).getIdAccount();
+					}
 				}
 				
 				Account aux = new Account();
 				
 				//String password = new BCryptPasswordEncoder().encode(student.getPasswordAccount());	
 				Role aux2 = rS.list().get(0);
-				aux.setIdAccount(cS.list().size() + 20);
+				aux.setIdAccount(aux3);
 				aux.setNameAccount(student.getNameStudent());
 				aux.setLastNameAccount(student.getLastnameStudent());
 				aux.setUserAccount(Integer.toString(student.getIdStudent()));
